@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="ScreenshotCat.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Padding="16" RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Spacing="3">
+                <TextBlock Text="截图工具" FontSize="20" FontWeight="SemiBold" />
+                <TextBlock x:Name="HotkeyText" FontSize="12" Opacity="0.72" />
+            </StackPanel>
+            <ToggleSwitch
+                x:Name="GraphicToggle"
+                Grid.Column="1"
+                Header="图形识别"
+                IsOn="False"
+                OffContent="关"
+                OnContent="开"
+                Toggled="GraphicToggle_Toggled" />
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="StartButton" HorizontalAlignment="Stretch" Click="StartButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <SymbolIcon Symbol="Camera" />
+                    <TextBlock Text="截图" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="CopyButton" Grid.Column="1" HorizontalAlignment="Stretch" Click="CopyButton_Click" IsEnabled="False">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <SymbolIcon Symbol="Copy" />
+                    <TextBlock Text="复制" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Border Grid.Row="2" Padding="12" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8">
+            <StackPanel Spacing="4">
+                <TextBlock Text="最近记录" FontWeight="SemiBold" />
+                <TextBlock x:Name="StatusText" Text="等待截图。" TextWrapping="Wrap" FontSize="12" Opacity="0.72" />
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="3" ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button HorizontalAlignment="Stretch" Click="HideButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <SymbolIcon Symbol="BackToWindow" />
+                    <TextBlock Text="后台运行" />
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Stretch" Click="ExitButton_Click">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <SymbolIcon Symbol="Cancel" />
+                    <TextBlock Text="退出" />
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

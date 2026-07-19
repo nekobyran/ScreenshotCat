@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window
+    x:Class="ScreenshotCat.AnnotationSessionToolbarWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="ScreenshotCat 批注会话栏">
+    <Grid x:Name="Root" Background="Transparent" RequestedTheme="Dark">
+        <Grid.Resources>
+            <Style x:Key="SessionIconButtonStyle" TargetType="Button">
+                <Setter Property="Width" Value="32" />
+                <Setter Property="Height" Value="32" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="Foreground" Value="#E7F1F8" />
+                <Setter Property="CornerRadius" Value="6" />
+            </Style>
+            <LinearGradientBrush x:Key="ActionTextBrush" StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Offset="0" Color="#FF59C7FF" />
+                <GradientStop Offset="0.52" Color="#FF8D7CFF" />
+                <GradientStop Offset="1" Color="#FFFF70C8" />
+            </LinearGradientBrush>
+        </Grid.Resources>
+
+        <Grid Padding="6,0" ColumnSpacing="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Column="0"
+                Click="CancelButton_Click"
+                Style="{StaticResource SessionIconButtonStyle}"
+                ToolTipService.ToolTip="取消常驻批注窗口">
+                <FontIcon FontSize="14" Glyph="&#xE711;" />
+            </Button>
+
+            <Button
+                Grid.Column="1"
+                Click="ClearButton_Click"
+                Style="{StaticResource SessionIconButtonStyle}"
+                ToolTipService.ToolTip="清空批注">
+                <FontIcon FontSize="15" Glyph="&#xE74D;" />
+            </Button>
+
+            <Grid
+                x:Name="DragRegion"
+                Grid.Column="2"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="#01000000"
+                PointerMoved="DragRegion_PointerMoved"
+                PointerPressed="DragRegion_PointerPressed"
+                PointerReleased="DragRegion_PointerReleased">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="6">
+                    <FontIcon
+                        FontSize="13"
+                        Foreground="#C7DEEE"
+                        Glyph="&#xE8BD;" />
+                    <TextBlock
+                        x:Name="StatusText"
+                        VerticalAlignment="Center"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="White"
+                        Text="正在批注" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="#B7C9D6"
+                        Text="拖拽移动窗口" />
+                </StackPanel>
+            </Grid>
+
+            <ToggleButton
+                x:Name="InteractionToggle"
+                Grid.Column="3"
+                MinWidth="86"
+                Height="30"
+                Padding="12,0"
+                Click="InteractionToggle_Click"
+                Content="操作窗口"
+                ToolTipService.ToolTip="开启后可直接操作目标软件" />
+
+            <Button
+                Grid.Column="4"
+                Click="LocateButton_Click"
+                Style="{StaticResource SessionIconButtonStyle}"
+                ToolTipService.ToolTip="定位目标窗口">
+                <FontIcon FontSize="15" Glyph="&#xE81C;" />
+            </Button>
+
+            <HyperlinkButton
+                x:Name="FinishButton"
+                Grid.Column="5"
+                Height="30"
+                Padding="12,0"
+                Background="Transparent"
+                BorderThickness="0"
+                Click="FinishButton_Click"
+                IsTabStop="False">
+                <TextBlock
+                    x:Name="FinishText"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Foreground="{StaticResource ActionTextBrush}"
+                    Text="保存" />
+            </HyperlinkButton>
+        </Grid>
+    </Grid>
+</Window>

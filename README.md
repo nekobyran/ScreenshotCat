@@ -1,0 +1,52 @@
+# ScreenshotCat
+
+一只轻量、原生的 Windows 截图与批注工具。ScreenshotCat 基于 WinUI 3 与 .NET 构建，所有截图和批注都在本机处理。
+
+## 功能
+
+- 使用 `Scroll Lock` 或 `Ctrl + Alt + N` 随时开始截图
+- 自动识别窗口、控件与自由框选区域
+- 支持箭头、标记、编号批注和文字说明
+- 支持多显示器与不同 DPI 缩放
+- 保存后自动复制到剪贴板，便于直接粘贴分享
+- 托盘常驻、开机自启，并可对目标窗口持续批注
+- 截图默认保存到 `图片\ScreenshotCat`
+
+## 下载与使用
+
+1. 在 [Releases](https://github.com/nekobyran/ScreenshotCat/releases) 下载最新的 `ScreenshotCat-*-win-x64.zip`。
+2. 解压到任意目录。
+3. 运行 `ScreenshotCat.exe`。
+
+当前发布包面向 Windows 10 1809（版本 17763）及以上的 64 位系统。程序暂未进行商业代码签名，首次运行时 Windows 可能显示安全提示；请只从本仓库 Releases 下载，并核对发布页提供的 SHA-256。
+
+## 从源码构建
+
+需要 Windows、.NET 10 SDK 和 Windows App SDK 构建环境。
+
+```powershell
+pwsh -File .\command\Build-ScreenshotCat.ps1 -Action Validate
+pwsh -File .\command\Build-ScreenshotCat.ps1 -Action PackageRelease -Version 1.0.0
+```
+
+脚本会把 SDK 缓存、临时文件和 NuGet 包放在 `D:\vibecoding\sdk`（存在该工作区时），避免占用系统盘；发布包输出到 `release/ScreenshotCat_Windows/release` 对应的工作区发布目录。
+
+## 隐私
+
+ScreenshotCat 不上传截图、批注或剪贴板内容，也不包含遥测服务。截图文件仅保存在本机。开机自启使用当前用户的 Windows `Run` 注册项，可通过退出程序并在系统“启动应用”设置中关闭。
+
+## 赞助
+
+如果 ScreenshotCat 对你有帮助，可以自愿扫码赞助。赞助与软件功能、更新和支持无绑定。
+
+<p align="center">
+  <img src="./assets/sponsor.jpg" alt="ScreenshotCat 赞助码" width="320">
+</p>
+
+## 参与贡献
+
+欢迎提交 Issue 与 Pull Request。提交前请先运行验证脚本，并避免在测试截图中包含隐私内容。
+
+## 许可证
+
+[MIT License](./LICENSE)

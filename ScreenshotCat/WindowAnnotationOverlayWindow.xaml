@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window
+    x:Class="ScreenshotCat.WindowAnnotationOverlayWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="ScreenshotCat 直接批注">
+    <Grid
+        x:Name="Root"
+        Background="Transparent"
+        KeyDown="Root_KeyDown"
+        SizeChanged="Root_SizeChanged"
+        PointerPressed="Root_PointerPressed"
+        PointerMoved="Root_PointerMoved"
+        PointerReleased="Root_PointerReleased">
+        <Grid.Resources>
+            <AcrylicBrush
+                x:Key="AnnotationComposerBrush"
+                FallbackColor="#F022252A"
+                TintColor="#FF20252B"
+                TintLuminosityOpacity="0.72"
+                TintOpacity="0.78" />
+        </Grid.Resources>
+        <Image
+            x:Name="TargetSnapshot"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            IsHitTestVisible="False"
+            Stretch="Fill" />
+
+        <Canvas x:Name="AnnotationCanvas" />
+
+        <Border
+            x:Name="CommentPreviewPanel"
+            Width="320"
+            MaxHeight="420"
+            Margin="0,16,16,0"
+            Padding="10"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Background="#C21D2731"
+            CornerRadius="10"
+            Opacity="0.78"
+            PointerPressed="CommentPreviewPanel_PointerPressed"
+            Visibility="Collapsed">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="CommentPreviewList" Spacing="8" />
+            </ScrollViewer>
+        </Border>
+
+        <Border
+            x:Name="SelectionPreview"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#3D168BFA"
+            BorderBrush="#FF168BFA"
+            BorderThickness="2"
+            CornerRadius="3"
+            IsHitTestVisible="False"
+            Visibility="Collapsed" />
+
+        <TeachingTip
+            x:Name="NotePanel"
+            Width="380"
+            ActionButtonContent="保存"
+            ActionButtonClick="SubmitNoteButton_Click"
+            Background="{StaticResource AnnotationComposerBrush}"
+            CloseButtonContent="取消"
+            CloseButtonClick="CancelNoteButton_Click"
+            IsLightDismissEnabled="False"
+            PreferredPlacement="Bottom"
+            ShouldConstrainToRootBounds="True"
+            Target="{x:Bind SelectionPreview}"
+            Title="添加批注">
+            <Grid Padding="0,4,0,0" ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <FontIcon
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    FontSize="18"
+                    Foreground="#FF168BFA"
+                    Glyph="&#xE8BD;" />
+
+                <TextBox
+                    x:Name="NoteBox"
+                    Grid.Column="1"
+                    MinWidth="250"
+                    Padding="4,6"
+                    VerticalContentAlignment="Center"
+                    AcceptsReturn="False"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Foreground="White"
+                    KeyDown="NoteBox_KeyDown"
+                    PlaceholderText="添加评论…" />
+            </Grid>
+        </TeachingTip>
+
+        <Border
+            x:Name="HintPill"
+            Margin="0,0,0,18"
+            Padding="14,7"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Background="#D91D2731"
+            CornerRadius="16"
+            IsHitTestVisible="False">
+            <TextBlock
+                FontSize="12"
+                Foreground="#D9E7F3"
+                Text="拖拽框选要批注的区域 · Enter 保存 · Esc 取消" />
+        </Border>
+    </Grid>
+</Window>
