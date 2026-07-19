@@ -10,6 +10,7 @@
 # Local build and release output
 artifacts/
 release/
+website/.dist/
 *.zip
 *.sha256
 
@@ -18,3 +19,4 @@ release/
 Thumbs.db
 .idea/
 .vscode/
+.wrangler/

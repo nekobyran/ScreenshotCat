@@ -7,6 +7,9 @@
 - 保存服务：`ScreenshotCat/Services/ScreenshotSaveService.cs`
 - 验证入口：`ScreenshotCat.Verification/Program.cs`
 - 构建与打包：`command/Build-ScreenshotCat.ps1`
+- 静态发布页：`website/`
+- 静态页验证与部署：`command/Deploy-KachaSite.ps1`
+- Cloudflare Workers Static Assets：`wrangler.jsonc` → `https://kacha.nkbr.cc/`
 - 开源说明：`README.md`、`LICENSE`、`SECURITY.md`、`CHANGELOG.md`
 - 赞助码：`assets/sponsor.jpg`
 - 发布产物：工作区 `release/ScreenshotCat_Windows/release/`
